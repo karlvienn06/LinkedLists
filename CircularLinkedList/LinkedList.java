@@ -6,55 +6,52 @@ import java.util.List;
 public class LinkedList {
 
     Node head;
-
-    void init() {
-        Node node1 = new Node();
-        Node node2 = new Node();
-        Node node3 = new Node();
-        Node node4 = new Node();
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node1;
-        head = node1;
-    }
-
+    int size = 0;
+    // pending 4
+    // 1 2 3
     public void insert(int data) {
+
         Node node = new Node();
         node.data = data;
-
-        Node last = head;
-
-
-        while (last.next != head) {
-            last = last.next;
-        }
-        last.next = node;
         node.next = head;
-        head = node;
+
+        boolean firstTime = true;
+
+        if(head==null)
+            head = node;
+        else if (head.next == null){
+            head.next = node;
+        }
+        else {
+            Node n = head;
+
+            while (n.next != head) {
+                n = n.next;
+            }
+            n.next = node;
+        }
 
     }
 
     public void delete() {
-        Node node = head;
-        while (node.next != head) {
-            node = node.next;
+//1 2 3 4
+        Node n = head;
+        while(n.next.next!=head){
+            n = n.next;
         }
-        Node last = node;
-        Node first = last.next;
-        last.next = first.next;
-        first = first.next;
-        head = first;
+        n.next = head;
 
     }
 
     public void print() {
-        Node node = head;
-        while (node.next != head) {
-            System.out.print(node.data + " ");
-            node = node.next;
+        Node n = head;
+        while (n.next != head) {
+            System.out.print(n.data + " ");
+            n = n.next;
         }
-        System.out.print(node.data);// printing last node
+       System.out.print(n.data);// printing last node
+        System.out.println();
+        System.out.println(n.next.next.next.next.data);
 
     }
 
