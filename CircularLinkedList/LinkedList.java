@@ -15,11 +15,11 @@ public class LinkedList {
         node.data = data;
         node.next = head;
 
-        boolean firstTime = true;
-
-        if(head==null)
+        if(head==null) {
             head = node;
-        else if (head.next == null){
+            node.next = head;
+        }
+        else if (head.next == head){
             head.next = node;
         }
         else {
@@ -36,6 +36,11 @@ public class LinkedList {
     public void delete() {
 //1 2 3 4
         Node n = head;
+
+        if(n.next == n){
+            head = null;
+            return;
+        }
         while(n.next.next!=head){
             n = n.next;
         }
@@ -45,13 +50,13 @@ public class LinkedList {
 
     public void print() {
         Node n = head;
+        if(head == null)
+            return;
         while (n.next != head) {
             System.out.print(n.data + " ");
             n = n.next;
         }
        System.out.print(n.data);// printing last node
-        System.out.println();
-        System.out.println(n.next.next.next.next.data);
 
     }
 

@@ -8,12 +8,15 @@ public class LinkedList {
         Node node = new Node();
         node.data = data;
 
-        Node n = head;
-        n.prev = node;
-        head = node;
-        head.next = n;
-
-    }
+            if (head == null) {
+                head = node;
+            } else {
+                Node n = head;
+                n.prev = node;
+                head = node;
+                head.next = n;
+            }
+        }
 
     public void insertAt(int index, int data){
         Node node = new Node();
@@ -59,8 +62,14 @@ public class LinkedList {
     }
 
     public void deleteAtStart(){
-        head = head.next;
-        head.prev = null;
+
+        if(head.next==null){
+            head =null;
+        }
+        else {
+            head = head.next;
+            head.prev = null;
+        }
     }
 
 
@@ -70,8 +79,6 @@ public class LinkedList {
 
         if(n.next==null)
             deleteAtStart();
-
-
 
         while(n.next!=null){
             if(n.next.next==null)
@@ -102,15 +109,15 @@ public class LinkedList {
 
         Node n = head;
 
-        while(n.next!=null){
-            System.out.print(n.data + " ");
-            n = n.next;
+        if(n==null){
+            return;
         }
-        System.out.println(n.data + " ");
-        System.out.println(head.next.prev.data);
-
-
+        else{
+            while(n.next!=null){
+                System.out.print(n.data + " ");
+                n = n.next;
+            }
+            System.out.println(n.data + " ");
+        }
     }
-
-
 }

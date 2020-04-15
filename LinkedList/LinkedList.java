@@ -54,7 +54,10 @@ public class LinkedList {
 
 
     public void deleteAtStart(){
-        head = head.next;
+        if(head.next==null)
+            head = null;
+        else
+            head = head.next;
     }
 
 
@@ -96,13 +99,18 @@ public class LinkedList {
 
         Node n = head;
 
-        while(n.next!=null){
-            System.out.print(n.data + " ");
-            n = n.next;
+        if(n==null)
+            return;
+        else {
+            while (n.next != null) {
+                System.out.print(n.data + " ");
+                n = n.next;
+            }
+            System.out.println(n.data + " ");
         }
-        System.out.println(n.data + " ");
 
     }
+
 
 
 
